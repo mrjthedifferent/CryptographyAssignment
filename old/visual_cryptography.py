@@ -30,7 +30,7 @@ def show_image(share1, share2):
 
 
 def main():
-    image = Image.open('kuet.jpg')
+    image = Image.open('old/kuet.jpg')
     image = image.convert('1')
 
     share1 = Image.new("1", [dimension * 2 for dimension in image.size])
@@ -57,8 +57,8 @@ def main():
                     pattern2(share1, x, y)
                     pattern2(share2, x, y)
 
-    share1.save('share1.jpg')
-    share2.save('share2.jpg')
+    share1.save('old/share1.jpg')
+    share2.save('old/share2.jpg')
 
     show_image(share1, share2)
 
