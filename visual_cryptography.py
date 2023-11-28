@@ -16,7 +16,7 @@ def pattern2(image, x, y):
     image.putpixel((x * 2 + 1, y * 2 + 1), 0)
 
 
-def show_image(share1, share2):
+def combine_image(share1, share2):
     outfile = Image.new('1', share1.size)
 
     for x in range(share1.size[0]):
@@ -24,13 +24,11 @@ def show_image(share1, share2):
             outfile.putpixel((x, y), max(
                 share1.getpixel((x, y)), share2.getpixel((x, y))))
 
-    share1.show()
-    share2.show()
-    outfile.show()
+    return outfile
 
 
 def main():
-    image = Image.open('old/kuet.jpg')
+    image = Image.open('images/kuet.jpg')
     image = image.convert('1')
 
     share1 = Image.new("1", [dimension * 2 for dimension in image.size])
@@ -57,10 +55,14 @@ def main():
                     pattern2(share1, x, y)
                     pattern2(share2, x, y)
 
-    share1.save('old/share1.jpg')
-    share2.save('old/share2.jpg')
+    outfile = combine_image(share1, share2)
+    share1.save('outputs/share1_bw.png')
+    share2.save('outputs/share2_bw.png')
+    outfile.save('outputs/result_bw.png')
 
-    show_image(share1, share2)
+    share1.show()
+    share2.show()
+    outfile.show()
 
 
 if __name__ == '__main__':

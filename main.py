@@ -1,66 +1,71 @@
-from PIL import Image
-import random
+import os
+import rsa_decryption_mixnet
+import elgamal_decryption_mixnet
+import visual_cryptography
+import visual_cryptography_color
 
 
-def pattern1(image, x, y):
-    image.putpixel((x * 2, y * 2), 255)
-    image.putpixel((x * 2 + 1, y * 2), 0)
-    image.putpixel((x * 2, y * 2 + 1), 0)
-    image.putpixel((x * 2 + 1, y * 2 + 1), 255)
+def clear_screen():
+    try:
+        # Check if running in an interactive terminal
+        if os.isatty(0):
+            os.system('cls' if os.name == 'nt' else 'clear')
+    except AttributeError:
+        # os.isatty is not available on all systems
+        pass
 
 
-def pattern2(image, x, y):
-    image.putpixel((x * 2, y * 2), 0)
-    image.putpixel((x * 2 + 1, y * 2), 255)
-    image.putpixel((x * 2, y * 2 + 1), 255)
-    image.putpixel((x * 2 + 1, y * 2 + 1), 0)
+def display_header():
+    print("=======================================================")
+    print("    Khulna University of Engineering & Technology (KUET)    ")
+    print("      Dept. of Computer Science and Engineering          ")
+    print("    Programming Assignment on Advanced Cryptography    ")
+    print("           Submitted To: Dr. Md. Kazi Rokibul Alam          ")
+    print("=======================================================")
 
 
-def show_image(share1, share2):
-    outfile = Image.new('1', share1.size)
+def display_menu():
+    print("\n                        Select your choice                        ")
+    print(" [1] RSA Decryption Mixnet")
+    print(" [2] Elgamal Decryption Mixnet")
+    print(" [3] Visual Cryptography")
+    print(" [4] Visual Cryptography (Color)")
+    print(" [0] Exit")
 
-    for x in range(share1.size[0]):
-        for y in range(share1.size[1]):
-            outfile.putpixel((x, y), max(
-                share1.getpixel((x, y)), share2.getpixel((x, y))))
 
-    share1.show()
-    share2.show()
-    outfile.show()
+def get_user_choice():
+    try:
+        return int(input("Enter your choice: "))
+    except ValueError:
+        print("Invalid input. Please enter a numeric value.")
+        return None
+
 
 def main():
-    image = Image.open('images/kuet_logo.png')
-    image = image.convert('1')
+    while True:
+        clear_screen()
+        display_header()
+        display_menu()
 
-    share1 = Image.new("1", [dimension * 2 for dimension in image.size])
-    share2 = Image.new("1", [dimension * 2 for dimension in image.size])
+        option = get_user_choice()
 
-    for x in range(0, image.size[0], 2):
-        for y in range(0, image.size[1], 2):
-            sourcepixel = image.getpixel((x, y))
-            assert sourcepixel in (0, 255)
-            randomValue = random.random()
-            if sourcepixel == 0:
-                if randomValue < .5:
-                    pattern1(share1, x, y)
-                    pattern2(share2, x, y)
-                else:
-                    pattern2(share1, x, y)
-                    pattern1(share2, x, y)
+        if option is not None:
+            if option == 1:
+                rsa_decryption_mixnet.main()
+            elif option == 2:
+                elgamal_decryption_mixnet.main()
+            elif option == 3:
+                visual_cryptography.main()
+            elif option == 4:
+                visual_cryptography_color.main()
+            elif option == 0:
+                print("Exiting the program. Goodbye!")
+                break
+            else:
+                print("Invalid choice. Please enter a valid option.")
 
-            elif sourcepixel == 255:
-                if randomValue < .5:
-                    pattern1(share1, x, y)
-                    pattern1(share2, x, y)
-                else:
-                    pattern2(share1, x, y)
-                    pattern2(share2, x, y)
-
-    share1.save('share1.png')
-    share2.save('share2.png')
-
-    show_image(share1, share2)
+            input("\nPress Enter to continue...")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

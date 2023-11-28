@@ -39,19 +39,27 @@ def main():
     msg = int(input("What is your message: "))
     c2 = ((msg % p) * pow(Y, r, p)) % p
 
-    for i in range(number_of_mix_server):
-        print("--------- Decryption for Mix Server : ", i + 1, " ------------")
-        temp = pow(c1, mix_server_private_key[i], p)
-        inv = helpers.modular_inverse(temp, p)
-        c2 = (c2 * inv) % p
-        print("c1 : ", c1)
-        print("c2 : ", c2)
-        print("-----------------------------------------------------------------------")
-
     print("----------------------------------------")
-    print("Final Message: " + str(c2))
+    print("Encrypted Message: " + str(c2))
     print("----------------------------------------")
 
+    i = input("Do you want to decrypt the message? (y/n): ")
+    if i == 'y':
+        print("Decrypting the message...")
+        for i in range(number_of_mix_server):
+            print("--------- Decryption from Mix Server : ", i + 1, " ------------")
+            temp = pow(c1, mix_server_private_key[i], p)
+            inv = helpers.modular_inverse(temp, p)
+            c2 = (c2 * inv) % p
+            print("c1 : ", c1)
+            print("c2 : ", c2)
+            print("-----------------------------------------------------------------------")
+
+        print("----------------------------------------")
+        print("Final Plain Message: " + str(c2))
+        print("----------------------------------------")
+    else:
+        print("Exiting...")
 
 if __name__ == '__main__':
     main()
