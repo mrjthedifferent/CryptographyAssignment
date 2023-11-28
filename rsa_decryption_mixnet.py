@@ -51,7 +51,7 @@ def encryption(m, pub_key, pri_key, r):
     :return: ciphertext
     """
     for i in range(number_of_mix_server):
-        print("---------- Encryption for Mix Server : ", i + 1, " ------------")
+        print("\033[95m---------- Encryption for Mix Server : ", i + 1, " ------------\033[0m")
         e, n = pub_key[i]
         d, n = pri_key[i]
         R = r[i]
@@ -67,7 +67,7 @@ def encryption(m, pub_key, pri_key, r):
         print("-----------------------------------------------------------------------")
 
     print("----------------------------------------")
-    print("Final Cipher text : ", ciphertext)
+    print("\033[92mFinal Cipher text : ", ciphertext, "\033[0m")
     print("----------------------------------------")
     return ciphertext
 
@@ -87,7 +87,7 @@ def decryption(ciphertext, pub_key, pri_key, r):
         i = 0
         plaintext = 0
         while j > -(number_of_mix_server + 1):
-            print("---------- Decryption for Mix Server : ", i + 1, " ------------")
+            print("\033[95m---------- Decryption for Mix Server : ", i + 1, " ------------\033[0m")
             e, n = pub_key[j]
             d, n = pri_key[j]
             R = r[j]
@@ -105,10 +105,10 @@ def decryption(ciphertext, pub_key, pri_key, r):
             print("-----------------------------------------------------------------------")
 
         print("----------------------------------------")
-        print("Final Plaintext : ", plaintext)
+        print("\033[92mFinal Plaintext : ", plaintext, "\033[0m")
         print("----------------------------------------")
     else:
-        print(" Thank you ")
+        print(" Exiting the program. Goodbye! ")
 
 
 def main():
@@ -122,7 +122,7 @@ def main():
         number_of_mix_server = int(i)
 
     for i in range(number_of_mix_server):
-        print("--------- Private & Public Key Gen for Mix Server : ", i + 1, " ------------")
+        print("\033[95m--------- Private & Public Key Gen for Mix Server : ", i + 1, " ------------\033[0m")
         public_key, private_key, r = generate_keys()
         pub_key.append(public_key)
         pri_key.append(private_key)

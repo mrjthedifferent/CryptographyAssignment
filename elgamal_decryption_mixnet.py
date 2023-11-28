@@ -24,7 +24,7 @@ def main():
     mix_server_bita_key = []
     Y = 1
     for i in range(number_of_mix_server):
-        print("--------- Key Gen for Mix Server : ", i + 1, " ------------")
+        print("\033[95m--------- Key Gen for Mix Server : ", i + 1, " ------------\033[0m")
         private_key = generate_private_key(p)
         mix_server_private_key.append(private_key)
         bita = pow(alpha, private_key, p)
@@ -40,14 +40,14 @@ def main():
     c2 = ((msg % p) * pow(Y, r, p)) % p
 
     print("----------------------------------------")
-    print("Encrypted Message: " + str(c2))
+    print("\033[92mEncrypted Message: " + str(c2) + "\033[0m")
     print("----------------------------------------")
 
     i = input("Do you want to decrypt the message? (y/n): ")
     if i == 'y':
         print("Decrypting the message...")
         for i in range(number_of_mix_server):
-            print("--------- Decryption from Mix Server : ", i + 1, " ------------")
+            print("\033[95m--------- Decryption from Mix Server : ", i + 1, " ------------\033[0m")
             temp = pow(c1, mix_server_private_key[i], p)
             inv = helpers.modular_inverse(temp, p)
             c2 = (c2 * inv) % p
@@ -56,10 +56,11 @@ def main():
             print("-----------------------------------------------------------------------")
 
         print("----------------------------------------")
-        print("Final Plain Message: " + str(c2))
+        print("\033[92mFinal Plain Message: " + str(c2) + "\033[0m")
         print("----------------------------------------")
     else:
         print("Exiting...")
+
 
 if __name__ == '__main__':
     main()

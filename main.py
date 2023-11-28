@@ -16,21 +16,21 @@ def clear_screen():
 
 
 def display_header():
-    print("=======================================================")
-    print("    Khulna University of Engineering & Technology (KUET)    ")
-    print("      Dept. of Computer Science and Engineering          ")
-    print("    Programming Assignment on Advanced Cryptography    ")
-    print("           Submitted To: Dr. Md. Kazi Rokibul Alam          ")
-    print("=======================================================")
+    print("\033[95m=======================================================\033[0m")
+    print("\033[95m    Khulna University of Engineering & Technology (KUET)    \033[0m")
+    print("\033[95m      Dept. of Computer Science and Engineering          \033[0m")
+    print("\033[95m    Programming Assignment on Advanced Cryptography    \033[0m")
+    print("\033[95m        Submitted To: Dr. Md. Kazi Rokibul Alam          \033[0m")
+    print("\033[95m=======================================================\033[0m")
 
 
 def display_menu():
     print("\n                        Select your choice                        ")
-    print(" [1] RSA Decryption Mixnet")
-    print(" [2] Elgamal Decryption Mixnet")
-    print(" [3] Visual Cryptography")
-    print(" [4] Visual Cryptography (Color)")
-    print(" [0] Exit")
+    print(" [\033[92m1\033[0m] RSA Decryption Mixnet")
+    print(" [\033[92m2\033[0m] Elgamal Decryption Mixnet")
+    print(" [\033[92m3\033[0m] Visual Cryptography")
+    print(" [\033[92m4\033[0m] Visual Cryptography (Color)")
+    print(" [\033[91m0\033[0m] Exit")
 
 
 def get_user_choice():
