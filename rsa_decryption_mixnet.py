@@ -1,6 +1,6 @@
 import helpers
 
-number_of_mix_server = 2  # default number of mix server
+number_of_mix_server = 3  # default number of mix server
 
 
 def generate_keys():
@@ -117,7 +117,7 @@ def main():
     pri_key = []
     random_string = []
 
-    i = input("Enter the number of mixnet-router (default:2) : ")
+    i = input("Enter the number of mixnet-router (default:3) : ")
     if i != '':
         number_of_mix_server = int(i)
 

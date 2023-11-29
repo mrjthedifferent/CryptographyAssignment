@@ -20,7 +20,7 @@ def display_header():
     print("\033[95m    Khulna University of Engineering & Technology (KUET)    \033[0m")
     print("\033[95m      Dept. of Computer Science and Engineering          \033[0m")
     print("\033[95m    Programming Assignment on Advanced Cryptography    \033[0m")
-    print("\033[95m        Submitted To: Dr. Md. Kazi Rokibul Alam          \033[0m")
+    print("\033[95m      Submitted To: Dr. Md. Kazi Rokibul Alam          \033[0m")
     print("\033[95m=======================================================\033[0m")
 
 

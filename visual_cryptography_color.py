@@ -3,7 +3,11 @@ from PIL import Image
 
 
 def halftone(I):
-    """Convert an image to binary using halftoning"""
+    """
+    Convert an image to binary using halftoning
+    :param I: Input image
+    :return: Halftoned image
+    """
     for i in range(2, len(I) - 2):
         # Calculate the error between the current pixel value and the nearest color level (either 0 or 255)
         for j in range(2, len(I[0]) - 2):
